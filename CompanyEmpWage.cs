@@ -6,12 +6,33 @@ using System.Threading.Tasks;
 
 namespace Employee
 {
+
+    public interface IComputeEmpWage
+    {
+        /// <summary>
+        /// only declaration of method not implimentation 
+        /// </summary>
+        /// <param name="company">The company.</param>
+        /// <param name="EmpRatePerHrs">The emp rate per HRS.</param>
+        /// <param name="Num_Of_Working_Days">The number of working days.</param>
+        /// <param name="WorkingHrs">The working HRS.</param>
+        public void addCompanyEmpWage(string company, int EmpRatePerHrs, int Num_Of_Working_Days, int WorkingHrs);
+        public void ComputeEmpWage();
+
+        public int getTotalWage(string company);
+
+    }
+    public class CompanyEmpWage
+
     class CompanyEmpWage
+
     {
         public string company;
         public int EmpRatePerHrs;
         public int Num_Of_Working_Days;
         public int WorkingHrs;
+ 
+        public int totalEmpWage;
         public int totalEmpWage = 0;
 
 
@@ -22,6 +43,7 @@ namespace Employee
             this.EmpRatePerHrs = EmpRatePerHrs;
             this.Num_Of_Working_Days = Num_Of_Working_Days;
             this.WorkingHrs = WorkingHrs;
+            this.totalEmpWage = 0;
 
         }
 
@@ -34,6 +56,12 @@ namespace Employee
         public string toString()
         {
             return "Total Emp Wage for Company :" + this.company + " is " + this.totalEmpWage;
+
+        }
+
+
+    }
+}
 
             //Console.ReadLine();
         }

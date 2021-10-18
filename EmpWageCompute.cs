@@ -6,6 +6,21 @@ using System.Threading.Tasks;
 
 namespace Employee
 {
+    public class EmpWageCompute : IComputeEmpWage
+    {
+
+        /// <summary>
+        /// The company emp wage list
+        /// </summary>
+        ///  
+        private LinkedList<CompanyEmpWage> companyEmpWageList;           //creating Empty LinkedList 
+        private Dictionary<string, CompanyEmpWage> companyToEmpWageMap;  //creating Empty Dictionary
+
+        public EmpWageCompute()
+        {
+            this.companyEmpWageList = new LinkedList<CompanyEmpWage>();
+            this.companyToEmpWageMap = new Dictionary<string, CompanyEmpWage>();
+            
     class EmpWageCompute
     {
         private int numofcompany = 0;
@@ -18,12 +33,22 @@ namespace Employee
 
         public void addCompanyEmpWage(string company, int EmpRatePerHrs, int Num_Of_Working_Days, int WorkingHrs)
         {
+            CompanyEmpWage companyEmpWage = new CompanyEmpWage(company, EmpRatePerHrs, Num_Of_Working_Days, WorkingHrs);
+            this.companyEmpWageList.AddLast(companyEmpWage);
+            this.companyToEmpWageMap.Add(company, companyEmpWage);
             companyEmpWageArray[this.numofcompany] = new CompanyEmpWage(company, EmpRatePerHrs, Num_Of_Working_Days, WorkingHrs);
             numofcompany++;
         }
 
         public void ComputeEmpWage()
         {
+            foreach (CompanyEmpWage companyEmpWage in this.companyEmpWageList)
+            {
+                companyEmpWage.setTotalEmpWage(this.empWageCompute(companyEmpWage));
+                Console.WriteLine(companyEmpWage.toString());
+
+            }
+
             for (int i = 0; i < numofcompany; i++)
             {
                 companyEmpWageArray[i].setTotalEmpWage(this.empWageCompute(this.companyEmpWageArray[i]));
@@ -36,13 +61,15 @@ namespace Employee
 
             const int IS_FullTime = 1;
             const int IS_PartTime = 2;
+
+            int empHrs;
             int empHrs = 0;
 
             switch (empInput)
             {
                 case IS_FullTime:
-
                     return empHrs = 8;
+                    
                 case IS_PartTime:
 
                     return empHrs = 4;
@@ -53,8 +80,14 @@ namespace Employee
             }
 
         }
+
+
         private int empWageCompute(CompanyEmpWage companyEmpWage)
         {
+
+        private int empWageCompute(CompanyEmpWage companyEmpWage)
+        {
+
 
             int totalEmpHrs = 0, empHrs = 0, totalWorkingDays = 0;
 
@@ -72,6 +105,11 @@ namespace Employee
             }
 
             return totalEmpHrs * companyEmpWage.EmpRatePerHrs;
+
+        }
+        public int getTotalWage(string company)
+        {
+            return this.companyToEmpWageMap[company].totalEmpWage;
 
         }
     }
