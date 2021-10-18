@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Employee
 {
+
     public interface IComputeEmpWage
     {
         /// <summary>
@@ -22,12 +23,17 @@ namespace Employee
 
     }
     public class CompanyEmpWage
+
+    class CompanyEmpWage
+
     {
         public string company;
         public int EmpRatePerHrs;
         public int Num_Of_Working_Days;
         public int WorkingHrs;
+ 
         public int totalEmpWage;
+        public int totalEmpWage = 0;
 
 
 
@@ -51,9 +57,14 @@ namespace Employee
         {
             return "Total Emp Wage for Company :" + this.company + " is " + this.totalEmpWage;
 
-
         }
 
+
+    }
+}
+
+            //Console.ReadLine();
+        }
 
     }
 }

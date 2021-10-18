@@ -27,6 +27,21 @@ namespace Employee
             Console.WriteLine("total wage for Kraft comany is    :" + emp.getTotalWage("Kraft"));
             Console.WriteLine("total wage for Sole comany is     :" + emp.getTotalWage("Sole"));
             //emp.getTotalWage("DMart");
+
+
+        // public const int Num_Of_Working_Days = 20;
+        //public const int WorkingHrs = 60;
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Welcome to Employee Wage Computation!\n");
+            EmpWageCompute emp = new EmpWageCompute();
+
+            emp.addCompanyEmpWage("DMart", 20, 20, 60);
+            emp.addCompanyEmpWage("Reliance", 20, 15, 30);
+            emp.addCompanyEmpWage("VMware", 10, 20, 30);
+            emp.addCompanyEmpWage("Rolex", 15, 10, 60);
+            emp.ComputeEmpWage();
+
         }
 
     }
